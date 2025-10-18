@@ -1,6 +1,11 @@
+export enum ConnectionStatus {
+    Connected = 'connected',
+    Disconnected = 'disconnected',
+}
+
 export class Connection {
     public id: string;
-    public status: string = 'disconnected';
+    public status: ConnectionStatus = ConnectionStatus.Disconnected;
 
     constructor() {
         this.id = `conn_${Math.random().toString(36).substring(2, 9)}`;
@@ -8,17 +13,17 @@ export class Connection {
     }
 
     public connect(): void {
-        this.status = 'connected';
+        this.status = ConnectionStatus.Connected;
         console.log(`🔌 Conexión ${this.id} establecida.`);
     }
 
     public disconnect(): void {
-        this.status = 'disconnected';
+        this.status = ConnectionStatus.Disconnected;
         console.log(`🔌 Conexión ${this.id} cerrada.`);
     }
 
     public sendData(data: string): void {
-        if (this.status === 'connected') {
+        if (this.status === ConnectionStatus.Connected) {
             console.log(`📡 Enviando datos vía ${this.id}: "${data}"`);
         } else {
             console.error(`❌ No se pueden enviar datos. La conexión ${this.id} no está activa.`);
