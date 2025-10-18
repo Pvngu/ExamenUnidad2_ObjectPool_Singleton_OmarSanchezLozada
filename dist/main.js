@@ -35,4 +35,3 @@ for (let i = 0; i < 6; i++) {
     console.log(`Solicitud #${i + 1}`);
     allConnections.push(manager.getConnection());
 }
-console.log("\n--- Demostración finalizada ---");

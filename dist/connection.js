@@ -1,22 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Connection = void 0;
+exports.Connection = exports.ConnectionStatus = void 0;
+var ConnectionStatus;
+(function (ConnectionStatus) {
+    ConnectionStatus["Connected"] = "connected";
+    ConnectionStatus["Disconnected"] = "disconnected";
+})(ConnectionStatus = exports.ConnectionStatus || (exports.ConnectionStatus = {}));
 class Connection {
     constructor() {
-        this.status = 'disconnected';
+        this.status = ConnectionStatus.Disconnected;
         this.id = `conn_${Math.random().toString(36).substring(2, 9)}`;
         this.connect();
     }
     connect() {
-        this.status = 'connected';
+        this.status = ConnectionStatus.Connected;
         console.log(`🔌 Conexión ${this.id} establecida.`);
     }
     disconnect() {
-        this.status = 'disconnected';
+        this.status = ConnectionStatus.Disconnected;
         console.log(`🔌 Conexión ${this.id} cerrada.`);
     }
     sendData(data) {
-        if (this.status === 'connected') {
+        if (this.status === ConnectionStatus.Connected) {
             console.log(`📡 Enviando datos vía ${this.id}: "${data}"`);
         }
         else {
